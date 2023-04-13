@@ -1,0 +1,12 @@
+.OnboardPanel {
+  .vkuiPlaceholder__in {
+    padding-top: 0;
+  }
+  &__in {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    height: calc(100vh - 70px);
+    justify-content: center;
+  }
+}
