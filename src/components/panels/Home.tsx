@@ -10,6 +10,7 @@ interface HomeProps extends CommonPanelProps {
 
 export function Home(props: HomeProps) {
   const { id, onBack, fetchedUser } = props;
+
   return (
     <Panel id={id}>
       <PanelHeader>Example</PanelHeader>

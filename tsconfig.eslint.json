@@ -1,16 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    ".storybook/**/*.js",
-    ".storybook/**/*.ts",
-    ".storybook/**/*.tsx",
-    "craco.config.ts"
-  ],
-  "exclude": [
-    "jest.config.js",
-    "prebuild.js",
-    "src/tools/cli/**/*.js"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
