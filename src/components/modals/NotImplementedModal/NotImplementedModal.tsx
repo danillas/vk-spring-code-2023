@@ -8,15 +8,13 @@ export function NotImplementedModal(props: CommonModalProps) {
     <ModalCard
       id={id}
       onClose={onClose}
-      header="Функционал не доступен"
+      subheader="Функционал не доступен"
       icon={<Icon28HourglassOutline />}
       actions={
         <Button mode="primary" size="l" stretched onClick={onClose}>
           Закрыть
         </Button>
       }
-    >
-      Очень сожалеем
-    </ModalCard>
+    />
   );
 }

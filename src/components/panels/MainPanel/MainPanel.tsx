@@ -1,4 +1,17 @@
-import { Panel, PanelHeader, Header, Button, Group, Div, Search, Cell, Separator, Spacing } from '@vkontakte/vkui';
+import {
+  Panel,
+  PanelHeader,
+  Header,
+  Button,
+  Group,
+  Div,
+  Search,
+  Cell,
+  Separator,
+  Spacing,
+  Link,
+  HorizontalScroll,
+} from '@vkontakte/vkui';
 import { CommonPanelProps } from 'src/types/common';
 import {
   Icon28TshirtOutline,
@@ -10,6 +23,15 @@ import {
 } from '@vkontakte/icons';
 import './styles.scss';
 import { useAppContext } from 'src/components/AppContext/useAppContext';
+
+const CATEGROIES = [
+  { key: 'wardrobe', text: 'Гардероб', counter: 10, Icon: Icon28TshirtOutline },
+  { key: 'child', text: 'Детские вещи', counter: 8, Icon: Icon28HorseToyOutline },
+  { key: 'computer', text: 'Компьютерная техника', counter: 4, Icon: Icon28ComputerOutline },
+  { key: 'electronics', text: 'Электроника', counter: 4, Icon: Icon28SmartphoneOutline },
+  { key: 'transport', text: 'Транспорт', counter: 2, Icon: Icon28HomeOutline },
+  { key: 'realty', text: 'Недвижимость', counter: 1, Icon: Icon28HomeOutline },
+];
 
 interface MainPanelProps extends CommonPanelProps {}
 
@@ -24,24 +46,12 @@ export function MainPanel(props: MainPanelProps) {
       <Search placeholder="Поиск вещи"></Search>
 
       <Group header={<Header mode="secondary">Категории вещей</Header>} mode="card">
-        <Cell before={<Icon28TshirtOutline />} indicator="10">
-          Гардероб
-        </Cell>
-        <Cell before={<Icon28HorseToyOutline />} indicator="8">
-          Детские вещи
-        </Cell>
-        <Cell before={<Icon28ComputerOutline />} indicator="4">
-          Компьютерная техника
-        </Cell>
-        <Cell before={<Icon28SmartphoneOutline />} indicator="2">
-          Электроника
-        </Cell>
-        <Cell before={<Icon28CarOutline />} indicator="6">
-          Транспорт
-        </Cell>
-        <Cell before={<Icon28HomeOutline />} indicator="1">
-          Недвижимость
-        </Cell>
+        {CATEGROIES.map(({ key, text, counter, Icon }) => (
+          <Cell key={key} before={<Icon />} indicator={counter} onClick={moves.openNotAvailable}>
+            {text}
+          </Cell>
+        ))}
+
         <Spacing size={8} />
         <Separator />
         <Spacing size={8} />
@@ -50,6 +60,19 @@ export function MainPanel(props: MainPanelProps) {
             Показать все
           </Button>
         </Div>
+      </Group>
+      <Group
+        header={
+          <Header mode="primary" aside={<Link>Показать все</Link>}>
+            Мои вещи
+          </Header>
+        }
+        mode="card"
+        separator="hide"
+      >
+        <HorizontalScroll>
+          <div style={{ display: 'flex' }}></div>
+        </HorizontalScroll>
       </Group>
     </Panel>
   );
