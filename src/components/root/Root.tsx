@@ -7,8 +7,9 @@ import { ModalId, PanelId, ViewId } from 'src/routing';
 import { cutArrayTail } from 'src/tools/misc';
 import { CommonModalProps } from 'src/types/common';
 import { NotImplementedModal } from '../modals/NotImplementedModal/NotImplementedModal';
-import { Home } from '../panels/Home';
+import { MainPanel } from '../panels/MainPanel/MainPanel';
 import { OnboardPanel } from '../panels/Onboard/OnboardPanel';
+import { StartLoaderView } from '../panels/StartLoaderView/StartLoaderView';
 
 const MODALS: {
   [key in ModalId]?:
@@ -18,7 +19,13 @@ const MODALS: {
   [ModalId.NotAvailable]: [NotImplementedModal],
 };
 
-export function Root() {
+interface RootProps {
+  loading: boolean;
+  error?: Error | null;
+}
+
+export function Root(props: RootProps) {
+  const { loading, error } = props;
   const { moves } = useAppContext();
   const location = useLocation();
   const router = useRouter();
@@ -29,6 +36,7 @@ export function Root() {
 
   const activeModal = modalId && modalId in MODALS ? modalId : null;
   const activeView = viewId;
+
   const onCloseModal = useCallback(() => router.popPageIfModal(), [router]);
 
   const modalItems = useMemo(
@@ -50,6 +58,14 @@ export function Root() {
     const cuttedTailHistory = cutArrayTail(history);
     const moveBackSteps = history.length - cuttedTailHistory.length + 1;
 
+    console.log('getViewProps', {
+      id: viewId,
+      /* Свайп бек идет на предыдущую страницу, отличную от текущей */
+      onSwipeBack: () => router.popPageTo(-moveBackSteps),
+      history: cuttedTailHistory,
+      activePanel: location.getViewActivePanel(viewId) || fallbackActivePanel,
+    });
+
     return {
       id: viewId,
       /* Свайп бек идет на предыдущую страницу, отличную от текущей */
@@ -61,12 +77,14 @@ export function Root() {
 
   const backHandler = moves.moveBack;
 
+  console.log(loading);
+
   return (
     <SplitLayout modal={modal}>
       <SplitCol animate>
         <VKUIRoot activeView={activeView}>
           <View {...getViewProps(ViewId.Main, PanelId.Main)}>
-            <Home id={PanelId.Main} />
+            <MainPanel id={PanelId.Main} />
           </View>
           <View {...getViewProps(ViewId.Onboard, PanelId.Onboard)}>
             <OnboardPanel id={PanelId.Onboard} onBack={backHandler} />

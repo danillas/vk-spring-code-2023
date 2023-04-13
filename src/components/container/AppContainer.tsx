@@ -13,7 +13,16 @@ interface AppContainerProps {
   launchParams: LaunchParams;
 }
 
-export class AppContainer extends React.Component<AppContainerProps> {
+interface AppContainerState {
+  loading: boolean;
+  error: Error | null;
+}
+
+export class AppContainer extends React.Component<AppContainerProps, AppContainerState> {
+  readonly state: Readonly<AppContainerState> = {
+    loading: true,
+    error: null,
+  };
   private readonly vkStorage = initVKStorage(this.props.bridge);
 
   private readonly router = createAppRouter({
@@ -32,6 +41,24 @@ export class AppContainer extends React.Component<AppContainerProps> {
     this.props.bridge,
   );
 
+  componentDidMount() {
+    this.initApp();
+  }
+
+  initApp = async () => {
+    this.setState({ loading: true, error: null });
+
+    try {
+      await this.vkStorage.sync().then((resp) => {
+        console.log('[VKStorage] Sync success', resp);
+      });
+    } catch (error) {
+      this.setState({ error: error as Error | null, loading: false });
+
+      throw new Error('VKStorage load failed');
+    }
+  };
+
   render() {
     return (
       <RouterContext.Provider value={this.router}>
@@ -43,7 +70,7 @@ export class AppContainer extends React.Component<AppContainerProps> {
             moves: this.routerMoves,
           }}
         >
-          <Root />
+          <Root loading={this.state.loading} />
         </AppContext.Provider>
       </RouterContext.Provider>
     );
