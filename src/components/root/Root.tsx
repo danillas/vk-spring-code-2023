@@ -10,6 +10,7 @@ import { NotImplementedModal } from '../modals/NotImplementedModal/NotImplemente
 import { MainPanel } from '../panels/MainPanel/MainPanel';
 import { OnboardPanel } from '../panels/Onboard/OnboardPanel';
 import { StartLoaderView } from '../panels/StartLoaderView/StartLoaderView';
+import { CategoriesListPanel } from '../panels/CategoriesListPanel/CategoriesListPanel';
 
 const MODALS: {
   [key in ModalId]?:
@@ -85,6 +86,7 @@ export function Root(props: RootProps) {
         <VKUIRoot activeView={activeView}>
           <View {...getViewProps(ViewId.Main, PanelId.Main)}>
             <MainPanel id={PanelId.Main} />
+            <CategoriesListPanel id={PanelId.CategoriesList} onBack={backHandler} />
           </View>
           <View {...getViewProps(ViewId.Onboard, PanelId.Onboard)}>
             <OnboardPanel id={PanelId.Onboard} onBack={backHandler} />

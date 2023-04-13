@@ -11,27 +11,13 @@ import {
   Spacing,
   Link,
   HorizontalScroll,
+  Image,
+  HorizontalCell,
 } from '@vkontakte/vkui';
 import { CommonPanelProps } from 'src/types/common';
-import {
-  Icon28TshirtOutline,
-  Icon28ComputerOutline,
-  Icon28SmartphoneOutline,
-  Icon28CarOutline,
-  Icon28HomeOutline,
-  Icon28HorseToyOutline,
-} from '@vkontakte/icons';
-import './styles.scss';
 import { useAppContext } from 'src/components/AppContext/useAppContext';
-
-const CATEGROIES = [
-  { key: 'wardrobe', text: 'Гардероб', counter: 10, Icon: Icon28TshirtOutline },
-  { key: 'child', text: 'Детские вещи', counter: 8, Icon: Icon28HorseToyOutline },
-  { key: 'computer', text: 'Компьютерная техника', counter: 4, Icon: Icon28ComputerOutline },
-  { key: 'electronics', text: 'Электроника', counter: 4, Icon: Icon28SmartphoneOutline },
-  { key: 'transport', text: 'Транспорт', counter: 2, Icon: Icon28HomeOutline },
-  { key: 'realty', text: 'Недвижимость', counter: 1, Icon: Icon28HomeOutline },
-];
+import { CATEGROIES, IMAGES_SRCS } from 'src/const';
+import './styles.scss';
 
 interface MainPanelProps extends CommonPanelProps {}
 
@@ -56,7 +42,7 @@ export function MainPanel(props: MainPanelProps) {
         <Separator />
         <Spacing size={8} />
         <Div>
-          <Button stretched size="l" mode="tertiary" onClick={onBack} data-to="persik">
+          <Button stretched size="l" mode="tertiary" onClick={moves.moveCategoriesList}>
             Показать все
           </Button>
         </Div>
@@ -71,7 +57,13 @@ export function MainPanel(props: MainPanelProps) {
         separator="hide"
       >
         <HorizontalScroll>
-          <div style={{ display: 'flex' }}></div>
+          <div style={{ display: 'flex' }}>
+            {IMAGES_SRCS.map((src) => (
+              <HorizontalCell key={src} size="l">
+                <Image size={135} borderRadius="m" src={src} />
+              </HorizontalCell>
+            ))}
+          </div>
         </HorizontalScroll>
       </Group>
     </Panel>

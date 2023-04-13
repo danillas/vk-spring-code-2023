@@ -1,6 +1,6 @@
 import { Button, ModalCard } from '@vkontakte/vkui';
 import { CommonModalProps } from 'src/types/common';
-import { Icon28HourglassOutline } from '@vkontakte/icons';
+import { Icon56ErrorOutline } from '@vkontakte/icons';
 
 export function NotImplementedModal(props: CommonModalProps) {
   const { id, onClose } = props;
@@ -8,8 +8,8 @@ export function NotImplementedModal(props: CommonModalProps) {
     <ModalCard
       id={id}
       onClose={onClose}
-      subheader="Функционал не доступен"
-      icon={<Icon28HourglassOutline />}
+      header="Функционал не доступен"
+      icon={<Icon56ErrorOutline />}
       actions={
         <Button mode="primary" size="l" stretched onClick={onClose}>
           Закрыть
