@@ -1,0 +1,65 @@
+{
+  "name": "spring-code-2023",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "cross-env PORT=10888 HTTPS=true react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "vk-miniapps-deploy",
+    "tunnel": "NODE_TLS_REJECT_UNAUTHORIZED=0 ./node_modules/.bin/vk-tunnel --insecure=1 --http-protocol=https --host=0.0.0.0 --port=10888"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "dependencies": {
+    "@happysanta/router": "^0.3.1",
+    "@types/node": "^14.14.6",
+    "@types/react": "^16.9.55",
+    "@types/react-dom": "^16.9.9",
+    "@types/react-redux": "^7.1.16",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "@vkontakte/icons": "2.7.0",
+    "@vkontakte/vk-bridge": "latest",
+    "@vkontakte/vk-miniapps-deploy": "0.0.25",
+    "@vkontakte/vkjs": "^0.32.2",
+    "@vkontakte/vkui": "5.1.0",
+    "eslint": "^8.36.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.8.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sass": "^1.62.0",
+    "typescript": "^5.0.2"
+  },
+  "devDependencies": {
+    "@vkontakte/vk-tunnel": "^0.1.0",
+    "cross-env": "^7.0.3",
+    "react-hot-loader": "^4.13.0",
+    "react-scripts": "^5.0.1"
+  },
+  "resolutions": {
+    "react-scripts/webpack-dev-server/yargs/yargs-parser": ">=18.1.2"
+  },
+  "overrides": {
+    "es5-ext@^0.10.50": "0.10.53"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
