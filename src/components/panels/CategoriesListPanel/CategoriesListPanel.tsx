@@ -1,13 +1,15 @@
 import { Button, Cell, FixedLayout, Group, Panel, PanelHeader, PanelHeaderBack, Search, Div } from '@vkontakte/vkui';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppContext } from 'src/components/AppContext/useAppContext';
 import { CATEGROIES } from 'src/const';
+import { useLockBodyScroll } from 'src/hooks/useLockBodyScroll';
 import { CommonPanelProps } from 'src/types/common';
 
 export function CategoriesListPanel(props: CommonPanelProps) {
   const { id, onBack } = props;
   const { moves } = useAppContext();
   const [categoriesList, updateCategoriesList] = useState(CATEGROIES);
+  const [isDragging, setIsDraggin] = useState(false);
 
   const reorderList = (
     { from, to }: { from: number; to: number },
@@ -19,6 +21,8 @@ export function CategoriesListPanel(props: CommonPanelProps) {
     _list.splice(to, 0, list[from]);
     updateListFn(_list);
   };
+
+  useLockBodyScroll(isDragging);
 
   return (
     <Panel id={id}>
@@ -33,7 +37,11 @@ export function CategoriesListPanel(props: CommonPanelProps) {
             key={key}
             before={<Icon />}
             indicator={counter}
-            onDragFinish={({ from, to }) => reorderList({ from, to }, categoriesList, updateCategoriesList)}
+            onDrag={() => setIsDraggin(true)}
+            onDragFinish={({ from, to }) => {
+              reorderList({ from, to }, categoriesList, updateCategoriesList);
+              setIsDraggin(false);
+            }}
           >
             {text}
           </Cell>

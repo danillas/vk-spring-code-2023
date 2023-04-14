@@ -50,7 +50,7 @@ export function MainPanel(props: MainPanelProps) {
       </Group>
       <Group
         header={
-          <Header mode="primary" aside={<Link>Показать все</Link>}>
+          <Header mode="primary" aside={<Link onClick={moves.moveGoodsList}>Показать все</Link>}>
             Мои вещи
           </Header>
         }
@@ -67,13 +67,14 @@ export function MainPanel(props: MainPanelProps) {
           </div>
         </HorizontalScroll>
       </Group>
+      <Spacing size={80} />
+
       <FixedLayout vertical="bottom">
         <Div>
           <Button size="l" stretched onClick={moves.openNotAvailable}>
             Добавить Вещь
           </Button>
         </Div>
-        <Spacing size={8} />
       </FixedLayout>
     </Panel>
   );

@@ -10,6 +10,7 @@ import { MainPanel } from '../panels/MainPanel/MainPanel';
 import { OnboardPanel } from '../panels/Onboard/OnboardPanel';
 import { StartLoaderView } from '../panels/StartLoaderView/StartLoaderView';
 import { CategoriesListPanel } from '../panels/CategoriesListPanel/CategoriesListPanel';
+import { GoodsListPanel } from '../panels/GoodsListPanel/GoodsListPanel';
 
 const MODALS: {
   [key in ModalId]?:
@@ -80,6 +81,7 @@ export function Root(props: RootProps) {
           <View {...getViewProps(ViewId.Main, PanelId.Main)}>
             <MainPanel id={PanelId.Main} />
             <CategoriesListPanel id={PanelId.CategoriesList} onBack={backHandler} />
+            <GoodsListPanel id={PanelId.GoodsList} onBack={backHandler} />
           </View>
           <View {...getViewProps(ViewId.Onboard, PanelId.Onboard)}>
             <OnboardPanel id={PanelId.Onboard} />

@@ -1,0 +1,17 @@
+.GoodsListPanel {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 10px;
+    padding-top: 16px;
+  }
+
+  &__item {
+    img {
+      object-fit: contain;
+      width: 100%;
+      border: 0.5px solid rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+    }
+  }
+}

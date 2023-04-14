@@ -10,12 +10,14 @@ export enum PageId {
   Main = '/',
   Onboard = '/onboard',
   CategoriesList = '/categories_list',
+  GoodsList = '/goods_list',
 }
 
 export enum PanelId {
   Main = 'main',
   Onboard = 'onboard',
   CategoriesList = 'categories_list',
+  GoodsList = 'goods_list',
 }
 
 export enum ModalId {
@@ -26,8 +28,9 @@ export enum PopoutId {}
 
 const routes: Record<PageId, Page> = {
   [PageId.Main]: new Page(PanelId.Main, ViewId.Main),
-  [PageId.Onboard]: new Page(PanelId.Onboard, ViewId.Onboard),
   [PageId.CategoriesList]: new Page(PanelId.CategoriesList, ViewId.Main),
+  [PageId.GoodsList]: new Page(PanelId.GoodsList, ViewId.Main),
+  [PageId.Onboard]: new Page(PanelId.Onboard, ViewId.Onboard),
 };
 
 interface CreateAppRouterOptions {

@@ -58,6 +58,10 @@ export const createRouterMoves = (options: CreateRouterMovesOptions) => {
       router.pushPage(PageId.CategoriesList);
     },
 
+    moveGoodsList: () => {
+      router.pushPage(PageId.GoodsList);
+    },
+
     moveBackFromPanel: (pageId: PageId, fallbackPageId: PageId) => {
       const currentIndex = router.history.getCurrentIndex();
 
