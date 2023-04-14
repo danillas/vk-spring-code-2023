@@ -1,7 +1,7 @@
 import React from 'react';
 import { VKBridge } from '@vkontakte/vk-bridge';
 import { initVKStorage } from 'src/tools/vkStorage';
-import { createAppRouter, createRouterMoves } from 'src/routing';
+import { PageId, createAppRouter, createRouterMoves } from 'src/routing';
 import { RouterContext } from '@happysanta/router';
 import AppContext from '../AppContext/appContext';
 import { LaunchParams } from 'src/tools';
@@ -26,7 +26,7 @@ export class AppContainer extends React.Component<AppContainerProps, AppContaine
   private readonly vkStorage = initVKStorage(this.props.bridge);
 
   private readonly router = createAppRouter({
-    enableLogging: false,
+    enableLogging: true,
   });
 
   private readonly routerMoves = createRouterMoves({
@@ -42,6 +42,8 @@ export class AppContainer extends React.Component<AppContainerProps, AppContaine
   );
 
   componentDidMount() {
+    this.router.start();
+
     this.initApp();
   }
 
@@ -50,6 +52,9 @@ export class AppContainer extends React.Component<AppContainerProps, AppContaine
 
     try {
       await this.vkStorage.sync().then((resp) => {
+        if (resp.onboardEnabled) {
+          this.router.replacePage(PageId.Onboard);
+        }
         console.log('[VKStorage] Sync success', resp);
       });
     } catch (error) {

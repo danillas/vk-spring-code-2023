@@ -89,18 +89,6 @@ export const createRouterMoves = (options: CreateRouterMovesOptions) => {
         router.pushPage(pageId, params);
       }
     },
-
-    mobileTabs: {
-      openCards: () => {
-        moves.moveBackTo(PageId.Main);
-      },
-      openIncomingLikes: () => {
-        moves.smartPushPage(PageId.Main); /** TODO check  */
-      },
-      openChats: () => {
-        moves.smartPushPage(PageId.Main); /** TODO check */
-      },
-    },
   };
 
   return moves;

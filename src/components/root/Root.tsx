@@ -1,7 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { useAppContext } from '../AppContext/useAppContext';
 import { useLocation, useRouter } from '@happysanta/router';
-import { useForcedRoute } from 'src/hooks/useForcedRoute';
 import { ModalRoot, SplitCol, SplitLayout, View, Root as VKUIRoot } from '@vkontakte/vkui';
 import { ModalId, PanelId, ViewId } from 'src/routing';
 import { cutArrayTail } from 'src/tools/misc';
@@ -31,12 +30,12 @@ export function Root(props: RootProps) {
   const location = useLocation();
   const router = useRouter();
 
-  const { viewId, modalId } = useForcedRoute();
+  console.log(router.history);
 
   /* Модалки */
 
-  const activeModal = modalId && modalId in MODALS ? modalId : null;
-  const activeView = viewId;
+  const activeModal = location.getModalId();
+  const activeView = location.getViewId();
 
   const onCloseModal = useCallback(() => router.popPageIfModal(), [router]);
 
@@ -59,13 +58,7 @@ export function Root(props: RootProps) {
     const cuttedTailHistory = cutArrayTail(history);
     const moveBackSteps = history.length - cuttedTailHistory.length + 1;
 
-    console.log('getViewProps', {
-      id: viewId,
-      /* Свайп бек идет на предыдущую страницу, отличную от текущей */
-      onSwipeBack: () => router.popPageTo(-moveBackSteps),
-      history: cuttedTailHistory,
-      activePanel: location.getViewActivePanel(viewId) || fallbackActivePanel,
-    });
+    console.log({ viewId: viewId, activePanel: location.getViewActivePanel(viewId) });
 
     return {
       id: viewId,
@@ -76,9 +69,9 @@ export function Root(props: RootProps) {
     };
   };
 
-  const backHandler = moves.moveBack;
-
-  console.log(loading);
+  const backHandler = () => {
+    moves.moveBack();
+  };
 
   return (
     <SplitLayout modal={modal}>
@@ -89,7 +82,7 @@ export function Root(props: RootProps) {
             <CategoriesListPanel id={PanelId.CategoriesList} onBack={backHandler} />
           </View>
           <View {...getViewProps(ViewId.Onboard, PanelId.Onboard)}>
-            <OnboardPanel id={PanelId.Onboard} onBack={backHandler} />
+            <OnboardPanel id={PanelId.Onboard} />
           </View>
         </VKUIRoot>
       </SplitCol>

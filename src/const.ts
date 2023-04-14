@@ -22,3 +22,5 @@ export const IMAGES_SRCS = [
   './images/items/xsolla/mug-up-your-game.jpg',
   './images/items/arrival/shopper.jpg',
 ];
+
+export const THINGS = [{ category: 'Гардероб', name: 'Шопер', src: '#' }];

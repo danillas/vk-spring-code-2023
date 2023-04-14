@@ -13,6 +13,7 @@ import {
   HorizontalScroll,
   Image,
   HorizontalCell,
+  FixedLayout,
 } from '@vkontakte/vkui';
 import { CommonPanelProps } from 'src/types/common';
 import { useAppContext } from 'src/components/AppContext/useAppContext';
@@ -66,6 +67,14 @@ export function MainPanel(props: MainPanelProps) {
           </div>
         </HorizontalScroll>
       </Group>
+      <FixedLayout vertical="bottom">
+        <Div>
+          <Button size="l" stretched onClick={moves.openNotAvailable}>
+            Добавить Вещь
+          </Button>
+        </Div>
+        <Spacing size={8} />
+      </FixedLayout>
     </Panel>
   );
 }
