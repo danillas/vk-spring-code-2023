@@ -4,11 +4,9 @@ import {
   Div,
   FixedLayout,
   Group,
-  Header,
   Panel,
   PanelHeader,
   PanelHeaderBack,
-  Separator,
   Spacing,
   Subhead,
   Title,
@@ -53,7 +51,7 @@ export function SingleGoodPanel(props: SingleGoodPanelProps) {
           2. Характеристика
         </Group>
       </Div>
-
+      <Spacing size={140} />
       <FixedLayout filled vertical="bottom">
         <Div>
           <ButtonGroup align="center" mode="vertical" stretched>
