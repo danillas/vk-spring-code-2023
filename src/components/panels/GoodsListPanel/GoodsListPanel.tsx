@@ -1,11 +1,15 @@
-import { Div, Panel, PanelHeader, PanelHeaderBack, Search } from '@vkontakte/vkui';
+import { Button, Div, FixedLayout, Panel, PanelHeader, PanelHeaderBack, Search, Spacing } from '@vkontakte/vkui';
 import { Item } from 'src/components/atomic/Item/Item';
 import { GOODS } from 'src/const';
 import { CommonPanelProps } from 'src/types/common';
 import './styles.scss';
+import { useAppContext } from 'src/components/AppContext/useAppContext';
 
 export function GoodsListPanel(props: CommonPanelProps) {
   const { id, onBack } = props;
+
+  const { moves } = useAppContext();
+
   return (
     <Panel id={id} className="GoodsListPanel">
       <PanelHeader separator={false} before={<PanelHeaderBack onClick={onBack} label="Назад" />}>
@@ -23,6 +27,14 @@ export function GoodsListPanel(props: CommonPanelProps) {
           />
         ))}
       </Div>
+      <Spacing size={70} />
+      <FixedLayout vertical="bottom" filled>
+        <Div>
+          <Button size="l" stretched onClick={moves.openCreateGoodModal}>
+            Добавить вещь
+          </Button>
+        </Div>
+      </FixedLayout>
     </Panel>
   );
 }

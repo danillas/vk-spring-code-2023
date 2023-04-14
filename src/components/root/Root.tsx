@@ -8,9 +8,9 @@ import { CommonModalProps } from 'src/types/common';
 import { NotImplementedModal } from '../modals/NotImplementedModal/NotImplementedModal';
 import { MainPanel } from '../panels/MainPanel/MainPanel';
 import { OnboardPanel } from '../panels/Onboard/OnboardPanel';
-import { StartLoaderView } from '../panels/StartLoaderView/StartLoaderView';
 import { CategoriesListPanel } from '../panels/CategoriesListPanel/CategoriesListPanel';
 import { GoodsListPanel } from '../panels/GoodsListPanel/GoodsListPanel';
+import { CreateGoodModal } from '../modals/CreateGoodModal/CreateGoodModal';
 
 const MODALS: {
   [key in ModalId]?:
@@ -18,6 +18,7 @@ const MODALS: {
     | [React.ComponentType<CommonModalProps>, { settlingHeight?: number; dynamicContentHeight?: boolean }];
 } = {
   [ModalId.NotAvailable]: [NotImplementedModal],
+  [ModalId.CreateGood]: [CreateGoodModal],
 };
 
 interface RootProps {
@@ -26,7 +27,6 @@ interface RootProps {
 }
 
 export function Root(props: RootProps) {
-  const { loading, error } = props;
   const { moves } = useAppContext();
   const location = useLocation();
   const router = useRouter();

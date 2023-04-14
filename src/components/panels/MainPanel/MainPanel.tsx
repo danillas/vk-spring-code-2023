@@ -23,7 +23,7 @@ import './styles.scss';
 interface MainPanelProps extends CommonPanelProps {}
 
 export function MainPanel(props: MainPanelProps) {
-  const { id, onBack } = props;
+  const { id } = props;
 
   const { moves } = useAppContext();
 
@@ -67,8 +67,7 @@ export function MainPanel(props: MainPanelProps) {
           </div>
         </HorizontalScroll>
       </Group>
-      <Spacing size={80} />
-
+      <Spacing size={70} />
       <FixedLayout vertical="bottom">
         <Div>
           <Button size="l" stretched onClick={moves.openNotAvailable}>

@@ -1,5 +1,5 @@
 import { Button, Cell, FixedLayout, Group, Panel, PanelHeader, PanelHeaderBack, Search, Div } from '@vkontakte/vkui';
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAppContext } from 'src/components/AppContext/useAppContext';
 import { CATEGROIES } from 'src/const';
 import { useLockBodyScroll } from 'src/hooks/useLockBodyScroll';

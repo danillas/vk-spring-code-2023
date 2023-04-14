@@ -62,6 +62,10 @@ export const createRouterMoves = (options: CreateRouterMovesOptions) => {
       router.pushPage(PageId.GoodsList);
     },
 
+    openCreateGoodModal: () => {
+      router.pushModal(ModalId.CreateGood);
+    },
+
     moveBackFromPanel: (pageId: PageId, fallbackPageId: PageId) => {
       const currentIndex = router.history.getCurrentIndex();
 

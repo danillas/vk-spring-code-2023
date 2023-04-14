@@ -22,6 +22,7 @@ export enum PanelId {
 
 export enum ModalId {
   NotAvailable = 'not_available',
+  CreateGood = 'create',
 }
 
 export enum PopoutId {}
