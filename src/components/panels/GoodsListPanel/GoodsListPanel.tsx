@@ -24,6 +24,7 @@ export function GoodsListPanel(props: CommonPanelProps) {
             src={good.src}
             header={good.name}
             top={good.category}
+            onClick={() => moves.moveSingleGood({ ...good })}
           />
         ))}
       </Div>

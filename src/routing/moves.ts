@@ -2,6 +2,7 @@ import { PageParams, Router } from '@happysanta/router';
 import { PageId } from './index';
 import { ModalId, PopoutId, ViewId } from './router';
 import { getMaxTailRepeatLength } from './helpers';
+import { GOODS } from 'src/const';
 
 interface CreateRouterMovesOptions {
   router: Router;
@@ -64,6 +65,10 @@ export const createRouterMoves = (options: CreateRouterMovesOptions) => {
 
     openCreateGoodModal: () => {
       router.pushModal(ModalId.CreateGood);
+    },
+
+    moveSingleGood: (params: (typeof GOODS)[0]) => {
+      router.pushPage(PageId.SingleGood, { ...params });
     },
 
     moveBackFromPanel: (pageId: PageId, fallbackPageId: PageId) => {

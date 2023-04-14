@@ -11,6 +11,7 @@ export enum PageId {
   Onboard = '/onboard',
   CategoriesList = '/categories_list',
   GoodsList = '/goods_list',
+  SingleGood = '/single',
 }
 
 export enum PanelId {
@@ -18,6 +19,7 @@ export enum PanelId {
   Onboard = 'onboard',
   CategoriesList = 'categories_list',
   GoodsList = 'goods_list',
+  SingleGood = 'single',
 }
 
 export enum ModalId {
@@ -31,6 +33,7 @@ const routes: Record<PageId, Page> = {
   [PageId.Main]: new Page(PanelId.Main, ViewId.Main),
   [PageId.CategoriesList]: new Page(PanelId.CategoriesList, ViewId.Main),
   [PageId.GoodsList]: new Page(PanelId.GoodsList, ViewId.Main),
+  [PageId.SingleGood]: new Page(PanelId.SingleGood, ViewId.Main),
   [PageId.Onboard]: new Page(PanelId.Onboard, ViewId.Onboard),
 };
 

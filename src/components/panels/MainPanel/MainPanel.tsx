@@ -17,7 +17,7 @@ import {
 } from '@vkontakte/vkui';
 import { CommonPanelProps } from 'src/types/common';
 import { useAppContext } from 'src/components/AppContext/useAppContext';
-import { CATEGROIES, IMAGES_SRCS } from 'src/const';
+import { CATEGROIES, GOODS } from 'src/const';
 import './styles.scss';
 
 interface MainPanelProps extends CommonPanelProps {}
@@ -59,9 +59,9 @@ export function MainPanel(props: MainPanelProps) {
       >
         <HorizontalScroll>
           <div style={{ display: 'flex' }}>
-            {IMAGES_SRCS.map((src) => (
-              <HorizontalCell key={src} size="l">
-                <Image size={135} borderRadius="m" src={src} />
+            {GOODS.map((good) => (
+              <HorizontalCell key={good.src} size="l">
+                <Image size={135} borderRadius="m" src={good.src} onClick={() => moves.moveSingleGood({ ...good })} />
               </HorizontalCell>
             ))}
           </div>
